@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOLAR DO KLAAAU</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(45deg, #000428, #004e92);
+            color: #fff;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Título Neon */
+        .titulo {
+            text-align: center;
+            padding: 20px;
+            font-size: 2.5em;
+            text-shadow: 0 0 15px #00f7ff;
+            letter-spacing: 3px;
+            animation: neon 1.5s infinite alternate;
+        }
+
+        @keyframes neon {
+            from { text-shadow: 0 0 10px #00f7ff; }
+            to { text-shadow: 0 0 20px #00f7ff, 0 0 30px #00f7ff; }
+        }
+
+        /* Sistema Solar */
+        .sistema-solar {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Sol Pulsante */
+        .sol {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #ffd700, #ff6b00);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 100px #ff4500;
+            animation: pulsar 3s infinite;
+        }
+
+        @keyframes pulsar {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        /* Planetas */
+        .orbita {
+            position: absolute;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rotacao linear infinite;
+        }
+
+        .planeta {
+            position: absolute;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        /* Cores e Tamanhos dos Planetas */
+        #mercurio { background: #A0522D; width: 20px; height: 20px; }
+        #venus    { background: #DEB887; width: 25px; height: 25px; }
+        #terra    { background: #4169E1; width: 28px; height: 28px; }
+        #marte    { background: #CD5C5C; width: 22px; height: 22px; }
+        #jupiter  { background: #DAA520; width: 50px; height: 50px; }
+        #saturno  { background: #F4A460; width: 45px; height: 45px; }
+        #urano    { background: #87CEEB; width: 35px; height: 35px; }
+        #netuno   { background: #4682B4; width: 33px; height: 33px; }
+
+        /* Anéis de Saturno */
+        .aneis {
+            position: absolute;
+            width: 80px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.5);
+            border-radius: 50%;
+            transform: rotate(-25deg);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Foguete Simples */
+        .foguete {
+            position: absolute;
+            width: 40px;
+            height: 80px;
+            background: linear-gradient(45deg, #666, #999);
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            animation: voar 20s linear infinite;
+            filter: drop-shadow(0 0 5px #fff);
+        }
+
+        /* Buraco Negro */
+        .buraco-negro {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #000 60%, #2b1055 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 50px #2b1055;
+            animation: absorver 5s infinite;
+            right: 10%;
+            top: 30%;
+        }
+
+        /* Meteoros e Estrelas Cadentes */
+        .meteoro {
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #fff, transparent);
+            animation: queimar 2s linear infinite;
+            filter: blur(1px);
+        }
+
+        /* NASA Link */
+        .nasa-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: 0.3s;
+        }
+
+        .nasa-link:hover {
+            color: #00f7ff;
+            text-shadow: 0 0 15px #00f7ff;
+        }
+
+        @keyframes rotacao {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes voar {
+            0% { transform: translate(-1000px, 100vh) rotate(45deg); }
+            100% { transform: translate(100vw, -100vh) rotate(45deg); }
+        }
+
+        @keyframes queimar {
+            0% { transform: translate(-100px, -100px) rotate(-30deg); opacity: 1; }
+            100% { transform: translate(100vw, 100vh) rotate(-30deg); opacity: 0; }
+        }
+
+        @keyframes absorver {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); box-shadow: 0 0 70px #4b0082; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 class="titulo">SOLAR DO KLAAAU</h1>
+    
+    <div class="sistema-solar">
+        <!-- Corpos Celestes -->
+        <div class="sol"></div>
+
+        <!-- Planetas -->
+        <div class="orbita" style="width: 200px; height: 200px; animation-duration: 8s">
+            <div class="planeta" id="mercurio" style="left: 100px"></div>
+        </div>
+        <div class="orbita" style="width: 280px; height: 280px; animation-duration: 12s">
+            <div class="planeta" id="venus" style="left: 140px"></div>
+        </div>
+        <div class="orbita" style="width: 360px; height: 360px; animation-duration: 16s">
+            <div class="planeta" id="terra" style="left: 180px"></div>
+        </div>
+        <div class="orbita" style="width: 440px; height: 440px; animation-duration: 20s">
+            <div class="planeta" id="marte" style="left: 220px"></div>
+        </div>
+        <div class="orbita" style="width: 600px; height: 600px; animation-duration: 24s">
+            <div class="planeta" id="jupiter" style="left: 300px"></div>
+        </div>
+        <div class="orbita" style="width: 720px; height: 720px; animation-duration: 30s">
+            <div class="planeta" id="saturno" style="left: 360px">
+                <div class="aneis"></div>
+            </div>
+        </div>
+        <div class="orbita" style="width: 840px; height: 840px; animation-duration: 36s">
+            <div class="planeta" id="urano" style="left: 420px"></div>
+        </div>
+        <div class="orbita" style="width: 960px; height: 960px; animation-duration: 42s">
+            <div class="planeta" id="netuno" style="left: 480px"></div>
+        </div>
+
+        <!-- Elementos Dinâmicos -->
+        <div class="foguete"></div>
+        <div class="buraco-negro"></div>
+        <div class="meteoro" style="top: 20%; left: 15%"></div>
+        <div class="meteoro" style="top: 60%; left: 30%"></div>
+        <div class="meteoro" style="top: 40%; left: 70%"></div>
+
+        <a href="https://www.nasa.gov" class="nasa-link" target="_blank">🔭 NASA Official</a>
+    </div>
+
+    <script>
+        // Criar estrelas cadentes dinâmicas
+        function criarEstrelaCadente() {
+            const estrela = document.createElement('div');
+            estrela.className = 'meteoro';
+            estrela.style.top = `${Math.random() * 100}%`;
+            estrela.style.left = `${Math.random() * 100}%`;
+            estrela.style.animationDuration = `${Math.random() * 2 + 1}s`;
+            document.querySelector('.sistema-solar').appendChild(estrela);
+            
+            setTimeout(() => estrela.remove(), 3000);
+        }
+
+        setInterval(criarEstrelaCadente, 1500);
+
+        // Efeito de hover nos planetas
+        document.querySelectorAll('.planeta').forEach(planeta => {
+            planeta.addEventListener('mouseover', () => {
+                planeta.style.transform = 'scale(1.3)';
+                planeta.style.boxShadow = `0 0 20px ${planeta.style.backgroundColor}`;
+            });
+            
+            planeta.addEventListener('mouseout', () => {
+                planeta.style.transform = 'scale(1)';
+                planeta.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
